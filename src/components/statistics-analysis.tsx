@@ -38,6 +38,18 @@ export function StatisticsAnalysis() {
     try {
       const result = await analyzeLottoStatistics(data);
       setAnalysisResult(result);
+
+      // Save to history
+      const newHistoryEntry = {
+        date: new Date().toLocaleDateString('ko-KR'),
+        combinations: [result.recommendedNumbers.split(',').map(n => parseInt(n.trim(), 10))],
+      };
+      
+      const existingHistoryString = localStorage.getItem('lottoHistory');
+      const existingHistory = existingHistoryString ? JSON.parse(existingHistoryString) : [];
+      const updatedHistory = [newHistoryEntry, ...existingHistory];
+      localStorage.setItem('lottoHistory', JSON.stringify(updatedHistory));
+
     } catch (error) {
       console.error("Error analyzing statistics:", error);
       toast({

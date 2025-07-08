@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/auth-context';
 import { Header } from '@/components/header';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LottoBall } from '@/components/lotto-ball';
@@ -16,20 +18,49 @@ type HistoryEntry = {
 
 export default function HistoryPage() {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingHistory, setIsLoadingHistory] = useState(true);
+  
+  const { user, loading: authLoading } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
-    try {
-      const savedHistory = localStorage.getItem('lottoHistory');
-      if (savedHistory) {
-        setHistory(JSON.parse(savedHistory));
-      }
-    } catch (error) {
-      console.error("Failed to load history from localStorage", error);
-    } finally {
-      setIsLoading(false);
+    if (!authLoading && !user) {
+      router.push('/login');
     }
-  }, []);
+  }, [user, authLoading, router]);
+
+  useEffect(() => {
+    if (user) {
+      try {
+        const savedHistory = localStorage.getItem('lottoHistory');
+        if (savedHistory) {
+          setHistory(JSON.parse(savedHistory));
+        }
+      } catch (error) {
+        console.error("Failed to load history from localStorage", error);
+      } finally {
+        setIsLoadingHistory(false);
+      }
+    }
+  }, [user]);
+
+  if (authLoading || !user) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
+          <div className="space-y-8">
+            <div className="text-left mb-16">
+                <Skeleton className="h-16 w-3/4" />
+                <Skeleton className="h-8 w-1/2 mt-6" />
+            </div>
+            <Skeleton className="h-64 w-full" />
+            <Skeleton className="h-64 w-full" />
+          </div>
+        </main>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-background selection:bg-primary/20">
@@ -45,7 +76,7 @@ export default function HistoryPage() {
             </p>
         </div>
 
-        {isLoading ? (
+        {isLoadingHistory ? (
             <div className="space-y-8">
                 {Array.from({length: 3}).map((_, i) => (
                     <Card key={i} className="shadow-lg animate-pulse border">

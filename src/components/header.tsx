@@ -1,8 +1,13 @@
-import { History, Sparkles, Ticket } from "lucide-react";
+'use client';
+
+import { History, Sparkles, Ticket, LogIn, UserPlus, LogOut } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { useAuth } from "@/context/auth-context";
 
 export function Header() {
+  const { user, logout, loading } = useAuth();
+
   return (
     <header className="py-8 px-4 sm:px-6 lg:px-8 border-b shadow-sm">
       <div className="container mx-auto flex items-center justify-between gap-4">
@@ -13,24 +18,48 @@ export function Header() {
             </h1>
         </Link>
         <nav className="hidden md:flex items-center gap-2">
-            <Button asChild variant="ghost" size="lg">
-                <Link href="/analysis">
-                    <Sparkles className="mr-2 h-5 w-5" />
-                    통계 분석
-                </Link>
-            </Button>
-            <Button asChild variant="ghost" size="lg">
-                <Link href="/recent">
-                    <Ticket className="mr-2 h-5 w-5" />
-                    최신 당첨 결과
-                </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-                <Link href="/history">
-                    <History className="mr-2 h-5 w-5" />
-                    추천 기록
-                </Link>
-            </Button>
+            {loading ? null : user ? (
+              <>
+                <span className="text-muted-foreground mr-4 text-lg">{user.email}</span>
+                <Button asChild variant="ghost" size="lg">
+                    <Link href="/analysis">
+                        <Sparkles className="mr-2 h-5 w-5" />
+                        통계 분석
+                    </Link>
+                </Button>
+                <Button asChild variant="ghost" size="lg">
+                    <Link href="/recent">
+                        <Ticket className="mr-2 h-5 w-5" />
+                        최신 당첨 결과
+                    </Link>
+                </Button>
+                <Button asChild variant="ghost" size="lg">
+                    <Link href="/history">
+                        <History className="mr-2 h-5 w-5" />
+                        추천 기록
+                    </Link>
+                </Button>
+                <Button onClick={logout} variant="outline" size="lg">
+                  <LogOut className="mr-2 h-5 w-5" />
+                  로그아웃
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button asChild variant="ghost" size="lg">
+                  <Link href="/login">
+                      <LogIn className="mr-2 h-5 w-5" />
+                      로그인
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link href="/signup">
+                      <UserPlus className="mr-2 h-5 w-5" />
+                      회원가입
+                  </Link>
+                </Button>
+              </>
+            )}
         </nav>
       </div>
     </header>
