@@ -1,7 +1,8 @@
 import { Header } from "@/components/header";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Cpu, Sparkles, Trophy, History } from "lucide-react";
+import { Cpu, Sparkles, History } from "lucide-react";
+import { RecentWinningNumbers } from "@/components/recent-winning-numbers";
 
 export default function Home() {
   const features = [
@@ -16,12 +17,6 @@ export default function Home() {
       description: "과거 당첨 번호를 입력하여 AI의 분석과 추천 번호를 받아보세요.",
       href: "/analysis",
       icon: <Sparkles className="w-8 h-8 text-primary" />,
-    },
-    {
-        title: "최신 당첨 결과",
-        description: "가장 최근의 로또 당첨 번호와 보너스 번호를 확인하세요.",
-        href: "/recent",
-        icon: <Trophy className="w-8 h-8 text-primary" />,
     },
     {
         title: "추천 기록",
@@ -44,7 +39,13 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="mb-12 md:mb-16 flex justify-center">
+            <div className="w-full max-w-md">
+                <RecentWinningNumbers />
+            </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature) => (
             <Link href={feature.href} key={feature.title} className="block hover:shadow-xl transition-shadow duration-300 rounded-lg">
               <Card className="h-full flex flex-col">

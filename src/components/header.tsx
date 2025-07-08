@@ -1,4 +1,4 @@
-import { Cpu, History, Sparkles, Ticket, Trophy } from "lucide-react";
+import { Cpu, History, Sparkles, Ticket } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
@@ -23,12 +23,6 @@ export function Header() {
                 <Link href="/analysis">
                     <Sparkles className="mr-2 h-4 w-4" />
                     통계 분석
-                </Link>
-            </Button>
-            <Button asChild variant="ghost">
-                <Link href="/recent">
-                    <Trophy className="mr-2 h-4 w-4" />
-                    최신 결과
                 </Link>
             </Button>
             <Button asChild variant="outline">
