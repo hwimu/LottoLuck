@@ -1,11 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Header } from '@/components/header';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LottoBall } from '@/components/lotto-ball';
 import { History as HistoryIcon } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Button } from '@/components/ui/button';
 
 type HistoryEntry = {
   date: string;
@@ -86,9 +88,11 @@ export default function HistoryPage() {
             <CardHeader>
               <CardTitle>기록 없음</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex flex-col items-center gap-4">
               <p className="text-muted-foreground">아직 생성된 추천 번호가 없습니다.</p>
-              <p className="text-muted-foreground mt-2">홈으로 돌아가서 번호를 생성해보세요.</p>
+              <Button asChild className="mt-2">
+                <Link href="/">번호 생성하러 가기</Link>
+              </Button>
             </CardContent>
           </Card>
         )}
