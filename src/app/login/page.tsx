@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { useAuth } from '@/context/auth-context';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -15,6 +16,18 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const { login } = useAuth();
   const { toast } = useToast();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const reason = searchParams.get('reason');
+    if (reason === 'unauthenticated') {
+      toast({
+        variant: 'default',
+        title: '로그인 필요',
+        description: '로그인 후에 이용해 주세요.',
+      });
+    }
+  }, [searchParams, toast]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

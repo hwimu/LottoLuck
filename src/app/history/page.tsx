@@ -25,7 +25,7 @@ export default function HistoryPage() {
 
   useEffect(() => {
     if (!authLoading && !user) {
-      router.push('/login');
+      router.push('/login?reason=unauthenticated');
     }
   }, [user, authLoading, router]);
 

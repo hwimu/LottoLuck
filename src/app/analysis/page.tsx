@@ -13,7 +13,7 @@ export default function AnalysisPage() {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push('/login');
+      router.push('/login?reason=unauthenticated');
     }
   }, [user, loading, router]);
 
