@@ -5,9 +5,9 @@ export default function RecentPage() {
   return (
     <div className="min-h-screen bg-background selection:bg-primary/20">
       <Header />
-      <main className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <main className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-center">
-            <div className="w-full max-w-md">
+            <div className="w-full max-w-2xl">
                 <RecentWinningNumbers />
             </div>
         </div>

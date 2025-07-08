@@ -10,24 +10,24 @@ export const RecentWinningNumbers = () => {
   };
 
   return (
-    <Card className="shadow-lg">
-      <CardHeader>
-        <CardTitle>최신 당첨 결과</CardTitle>
-        <CardDescription>
+    <Card className="shadow-2xl border-primary/20 border">
+      <CardHeader className="p-8">
+        <CardTitle className="text-3xl font-bold">최신 당첨 결과</CardTitle>
+        <CardDescription className="text-lg pt-1">
           {recentDraw.drawNumber}회차 ({recentDraw.date} 추첨)
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-8 p-8 pt-0">
         <div>
-          <h4 className="font-semibold mb-3 text-muted-foreground">당첨 번호</h4>
-          <div className="flex flex-wrap gap-2">
+          <h4 className="font-semibold mb-4 text-lg text-muted-foreground">당첨 번호</h4>
+          <div className="flex flex-wrap gap-4">
             {recentDraw.numbers.map((num) => (
               <LottoBall key={num} number={num} />
             ))}
           </div>
         </div>
         <div>
-            <h4 className="font-semibold mb-3 mt-4 text-muted-foreground">보너스 번호</h4>
+            <h4 className="font-semibold mb-4 mt-6 text-lg text-muted-foreground">보너스 번호</h4>
             <LottoBall number={recentDraw.bonus} className="bg-accent text-accent-foreground border-green-300" />
         </div>
       </CardContent>

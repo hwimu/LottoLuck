@@ -51,27 +51,27 @@ export function StatisticsAnalysis() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-2xl">
-          <Sparkles className="text-primary w-7 h-7" />
+    <Card className="w-full shadow-2xl border-primary/20 border">
+      <CardHeader className="p-8">
+        <CardTitle className="flex items-center gap-3 text-3xl font-bold">
+          <Sparkles className="text-primary w-8 h-8" />
           AI 통계 분석
         </CardTitle>
-        <CardDescription>과거 당첨 번호를 입력하여 AI의 분석과 추천 번호를 받아보세요.</CardDescription>
+        <CardDescription className="text-lg pt-1">과거 당첨 번호를 입력하여 AI의 분석과 추천 번호를 받아보세요.</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-8 pt-0">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
               control={form.control}
               name="pastWinningNumbers"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>과거 당첨 번호 (쉼표로 구분)</FormLabel>
+                  <FormLabel className="text-base">과거 당첨 번호 (쉼표로 구분)</FormLabel>
                   <FormControl>
                     <Textarea
                       placeholder="예: 8, 12, 17, 25, 33, 41"
-                      className="resize-none h-24"
+                      className="resize-none h-32 text-base"
                       {...field}
                     />
                   </FormControl>
@@ -79,39 +79,39 @@ export function StatisticsAnalysis() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full" disabled={isLoading}>
+            <Button type="submit" size="lg" className="w-full h-14 text-xl" disabled={isLoading}>
               {isLoading ? "분석 중..." : "분석 시작"}
             </Button>
           </form>
         </Form>
       </CardContent>
       {(isLoading || analysisResult) && (
-        <CardFooter className="flex flex-col items-start gap-4 mt-4">
+        <CardFooter className="flex flex-col items-start gap-6 p-8 pt-0 mt-6 border-t">
           {isLoading && (
-            <div className="w-full space-y-4 animate-pulse">
-              <h3 className="font-semibold text-lg">AI 분석 결과</h3>
-              <Skeleton className="h-4 w-3/4" />
-              <Skeleton className="h-4 w-1/2" />
-              <div className="flex flex-wrap gap-2">
-                <Skeleton className="w-12 h-12 rounded-full" />
-                <Skeleton className="w-12 h-12 rounded-full" />
-                <Skeleton className="w-12 h-12 rounded-full" />
-                <Skeleton className="w-12 h-12 rounded-full" />
-                <Skeleton className="w-12 h-12 rounded-full" />
-                <Skeleton className="w-12 h-12 rounded-full" />
+            <div className="w-full space-y-6 animate-pulse pt-6">
+              <h3 className="font-semibold text-xl">AI 분석 결과</h3>
+              <Skeleton className="h-5 w-3/4" />
+              <Skeleton className="h-5 w-1/2" />
+              <div className="flex flex-wrap gap-4 mt-2">
+                <Skeleton className="w-14 h-14 rounded-full" />
+                <Skeleton className="w-14 h-14 rounded-full" />
+                <Skeleton className="w-14 h-14 rounded-full" />
+                <Skeleton className="w-14 h-14 rounded-full" />
+                <Skeleton className="w-14 h-14 rounded-full" />
+                <Skeleton className="w-14 h-14 rounded-full" />
               </div>
             </div>
           )}
           {analysisResult && (
-            <div className="space-y-4 w-full">
-              <h3 className="font-semibold text-lg">AI 분석 결과</h3>
+            <div className="space-y-6 w-full pt-6">
+              <h3 className="font-semibold text-xl">AI 분석 결과</h3>
               <div>
-                <h4 className="font-semibold mb-2">분석 요약</h4>
-                <p className="text-sm text-muted-foreground p-3 bg-muted rounded-lg">{analysisResult.summary}</p>
+                <h4 className="font-semibold mb-2 text-lg">분석 요약</h4>
+                <p className="text-base text-muted-foreground p-4 bg-muted rounded-lg">{analysisResult.summary}</p>
               </div>
               <div>
-                <h4 className="font-semibold mb-2">AI 추천 번호</h4>
-                <div className="flex flex-wrap gap-2">
+                <h4 className="font-semibold mb-3 text-lg">AI 추천 번호</h4>
+                <div className="flex flex-wrap gap-4">
                   {analysisResult.recommendedNumbers.split(',').map((num) => (
                     <LottoBall key={num} number={num.trim()} />
                   ))}
