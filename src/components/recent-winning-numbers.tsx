@@ -1,5 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { LottoBall } from "@/components/lotto-ball";
+import { Ticket } from "lucide-react";
 
 export const RecentWinningNumbers = () => {
   const recentDraw = {
@@ -12,7 +13,10 @@ export const RecentWinningNumbers = () => {
   return (
     <Card className="shadow-2xl border-primary/20 border">
       <CardHeader className="p-8">
-        <CardTitle className="text-3xl font-bold">최신 당첨 결과</CardTitle>
+        <CardTitle className="text-3xl font-bold flex items-center gap-3">
+          <Ticket className="w-8 h-8 text-primary" />
+          최신 당첨 결과
+        </CardTitle>
         <CardDescription className="text-lg pt-1">
           {recentDraw.drawNumber}회차 ({recentDraw.date} 추첨)
         </CardDescription>

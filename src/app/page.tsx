@@ -30,7 +30,7 @@ export default function Home() {
       <Header />
       <main className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 md:mb-24">
-          <h2 className="text-5xl font-extrabold tracking-tighter sm:text-6xl md:text-7xl text-foreground">
+          <h2 className="text-5xl font-extrabold tracking-tighter sm:text-6xl md:text-7xl text-foreground drop-shadow-[0_2px_4px_hsl(var(--primary)/0.4)]">
             AI로 당신의 행운을 예측하세요
           </h2>
           <p className="mt-6 max-w-3xl mx-auto text-xl text-muted-foreground">
