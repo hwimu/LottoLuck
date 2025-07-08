@@ -10,7 +10,7 @@ type User = {
 type AuthContextType = {
   user: User | null;
   loading: boolean;
-  login: (email: string) => void;
+  login: (email: string) => boolean;
   logout: () => void;
   signup: (email: string) => void;
 };
@@ -36,23 +36,50 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const login = (email: string) => {
-    const newUser = { email };
-    setUser(newUser);
-    localStorage.setItem('lottoUser', JSON.stringify(newUser));
-    router.push('/');
+  const login = (email: string): boolean => {
+    try {
+      const storedUsers = localStorage.getItem('lottoUsersDb');
+      const users: string[] = storedUsers ? JSON.parse(storedUsers) : [];
+      
+      if (users.includes(email)) {
+        const currentUser = { email };
+        setUser(currentUser);
+        localStorage.setItem('lottoUser', JSON.stringify(currentUser));
+        router.push('/');
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error("Login error:", error);
+      return false;
+    }
   };
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem('lottoUser');
+    localStorage.removeItem('lottoHistory');
     router.push('/login');
   };
   
   const signup = (email: string) => {
-    // In a real app, you'd have more logic here.
-    // For this mock, signup is the same as login.
-    login(email);
+    try {
+      const storedUsers = localStorage.getItem('lottoUsersDb');
+      let users: string[] = storedUsers ? JSON.parse(storedUsers) : [];
+      
+      if (!users.includes(email)) {
+        users.push(email);
+        localStorage.setItem('lottoUsersDb', JSON.stringify(users));
+      }
+      
+      // Log the user in after signup (or if they already exist)
+      const newUser = { email };
+      setUser(newUser);
+      localStorage.setItem('lottoUser', JSON.stringify(newUser));
+      router.push('/');
+    } catch (error) {
+        console.error("Signup error:", error);
+    }
   };
 
   return (

@@ -8,17 +8,26 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { LogIn } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useAuth();
+  const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Mock login, in a real app you'd validate password
+    // Mock login, password is not validated in this version.
     if (email && password) {
-      login(email);
+      const success = login(email);
+      if (!success) {
+        toast({
+          variant: "destructive",
+          title: "로그인 실패",
+          description: "계정이 존재하지 않습니다. 먼저 회원가입을 진행해주세요.",
+        });
+      }
     }
   };
 
