@@ -91,7 +91,7 @@ export default function HistoryPage() {
             <CardContent className="flex flex-col items-center gap-4">
               <p className="text-muted-foreground">아직 생성된 추천 번호가 없습니다.</p>
               <Button asChild className="mt-2">
-                <Link href="/">번호 생성하러 가기</Link>
+                <Link href="/analysis">통계 분석하러 가기</Link>
               </Button>
             </CardContent>
           </Card>

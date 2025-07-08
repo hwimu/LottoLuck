@@ -1,4 +1,4 @@
-import { Cpu, History, Sparkles, Ticket } from "lucide-react";
+import { History, Sparkles, Ticket } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
@@ -13,12 +13,6 @@ export function Header() {
             </h1>
         </Link>
         <nav className="hidden md:flex items-center gap-2">
-            <Button asChild variant="ghost">
-                <Link href="/generator">
-                    <Cpu className="mr-2 h-4 w-4" />
-                    번호 생성
-                </Link>
-            </Button>
             <Button asChild variant="ghost">
                 <Link href="/analysis">
                     <Sparkles className="mr-2 h-4 w-4" />

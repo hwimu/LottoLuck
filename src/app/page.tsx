@@ -1,16 +1,10 @@
 import { Header } from "@/components/header";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Cpu, Sparkles, History, Ticket } from "lucide-react";
+import { Sparkles, History, Ticket } from "lucide-react";
 
 export default function Home() {
   const features = [
-    {
-      title: "AI 맞춤 번호 생성",
-      description: "원하는 번호를 포함하거나 제외하여 맞춤형 로또 번호를 생성하세요.",
-      href: "/generator",
-      icon: <Cpu className="w-8 h-8 text-primary" />,
-    },
     {
       title: "AI 통계 분석",
       description: "과거 당첨 번호를 입력하여 AI의 분석과 추천 번호를 받아보세요.",
@@ -44,7 +38,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature) => (
             <Link href={feature.href} key={feature.title} className="block hover:shadow-xl transition-shadow duration-300 rounded-lg">
               <Card className="h-full flex flex-col">
