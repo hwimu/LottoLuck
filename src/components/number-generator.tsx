@@ -24,6 +24,12 @@ const FormSchema = z.object({
 
 type FormData = z.infer<typeof FormSchema>;
 
+type HistoryEntry = {
+  date: string;
+  combinations: number[][];
+};
+
+
 export function NumberGenerator() {
   const [generatedNumbers, setGeneratedNumbers] = useState<GenerateLottoNumbersOutput | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -54,6 +60,33 @@ export function NumberGenerator() {
         excludedNumbers: parseNumbers(data.excludedNumbers),
       });
       setGeneratedNumbers(result);
+
+      try {
+        const today = new Date().toLocaleDateString('ko-KR');
+        const newCombinations = result.combinations;
+        
+        const existingHistoryJSON = localStorage.getItem('lottoHistory');
+        const existingHistory: HistoryEntry[] = existingHistoryJSON ? JSON.parse(existingHistoryJSON) : [];
+
+        const todayEntryIndex = existingHistory.findIndex(entry => entry.date === today);
+
+        let updatedHistory: HistoryEntry[];
+
+        if (todayEntryIndex > -1) {
+          const todayEntry = existingHistory[todayEntryIndex];
+          todayEntry.combinations = [...newCombinations, ...todayEntry.combinations];
+          updatedHistory = [...existingHistory];
+        } else {
+          updatedHistory = [{ date: today, combinations: newCombinations }, ...existingHistory];
+        }
+
+        const limitedHistory = updatedHistory.slice(0, 100);
+        
+        localStorage.setItem('lottoHistory', JSON.stringify(limitedHistory));
+      } catch (e) {
+        console.error("Failed to save to localStorage", e);
+      }
+
     } catch (error) {
       console.error("Error generating numbers:", error);
       toast({
