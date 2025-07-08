@@ -25,6 +25,12 @@ export function Header() {
                     통계 분석
                 </Link>
             </Button>
+            <Button asChild variant="ghost">
+                <Link href="/recent">
+                    <Ticket className="mr-2 h-4 w-4" />
+                    최신 당첨 결과
+                </Link>
+            </Button>
             <Button asChild variant="outline">
                 <Link href="/history">
                     <History className="mr-2 h-4 w-4" />
