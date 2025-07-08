@@ -69,7 +69,7 @@ export default function HistoryPage() {
         <div className="text-left mb-16">
             <h2 className="text-5xl font-extrabold tracking-tighter sm:text-6xl md:text-6xl text-foreground flex items-center gap-4">
               <HistoryIcon className="w-12 h-12 text-primary" />
-              이전 추천 번호
+              나의 행운 기록
             </h2>
             <p className="mt-6 max-w-2xl text-xl text-muted-foreground">
               과거에 AI가 추천했던 번호 조합들을 확인해보세요.

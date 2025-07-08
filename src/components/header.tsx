@@ -24,19 +24,19 @@ export function Header() {
                 <Button asChild variant="ghost" size="lg">
                     <Link href="/analysis">
                         <Sparkles className="mr-2 h-5 w-5" />
-                        통계 분석
+                        AI 번호 예측
                     </Link>
                 </Button>
                 <Button asChild variant="ghost" size="lg">
                     <Link href="/recent">
                         <Ticket className="mr-2 h-5 w-5" />
-                        최신 당첨 결과
+                        금주의 당첨번호
                     </Link>
                 </Button>
                 <Button asChild variant="ghost" size="lg">
                     <Link href="/history">
                         <History className="mr-2 h-5 w-5" />
-                        추천 기록
+                        나의 행운 기록
                     </Link>
                 </Button>
                 <Button onClick={logout} variant="outline" size="lg">

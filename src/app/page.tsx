@@ -6,19 +6,19 @@ import { Sparkles, History, Ticket } from "lucide-react";
 export default function Home() {
   const features = [
     {
-      title: "AI 통계 분석",
+      title: "AI 번호 예측",
       description: "과거 당첨 번호를 입력하여 AI의 분석과 추천 번호를 받아보세요.",
       href: "/analysis",
       icon: <Sparkles className="w-10 h-10 text-primary" />,
     },
     {
-      title: "최신 당첨 결과",
+      title: "금주의 당첨번호",
       description: "가장 최근 회차의 당첨 번호와 보너스 번호를 확인하세요.",
       href: "/recent",
       icon: <Ticket className="w-10 h-10 text-primary" />,
     },
     {
-        title: "추천 기록",
+        title: "나의 행운 기록",
         description: "과거에 AI가 추천했던 번호 조합들을 확인해보세요.",
         href: "/history",
         icon: <History className="w-10 h-10 text-primary" />,

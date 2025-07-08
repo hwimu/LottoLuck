@@ -67,7 +67,7 @@ export function StatisticsAnalysis() {
       <CardHeader className="p-8">
         <CardTitle className="flex items-center gap-3 text-3xl font-bold">
           <Sparkles className="text-primary w-8 h-8" />
-          AI 통계 분석
+          AI 번호 예측
         </CardTitle>
         <CardDescription className="text-lg pt-1">과거 당첨 번호를 입력하여 AI의 분석과 추천 번호를 받아보세요.</CardDescription>
       </CardHeader>
