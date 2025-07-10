@@ -63,7 +63,7 @@ export function Header() {
             onClick={(e) => handleLinkClick(e, href, auth)}
             className={cn(
               linkClass,
-              pathname === href ? "text-primary-foreground font-semibold" : "text-primary-foreground/80",
+              pathname === href ? "text-black font-semibold" : "text-black/80",
             )}
           >
             {label}
@@ -127,11 +127,11 @@ export function Header() {
       <div className="flex w-full items-center justify-end gap-4 md:ml-auto md:gap-2 lg:gap-4">
         {loading ? null : user ? (
           <div className="flex items-center gap-2">
-            <span className="text-primary-foreground font-bold hidden sm:inline">안녕하세요, {userInitial}님!</span>
+            <span className="text-black font-bold hidden sm:inline">안녕하세요, {userInitial}님!</span>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="overflow-hidden rounded-full hover:bg-primary/80">
-                  <UserCircle className="w-6 h-6 text-primary-foreground" />
+                  <UserCircle className="w-6 h-6 text-black" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -149,9 +149,14 @@ export function Header() {
             </DropdownMenu>
           </div>
         ) : (
-           <Button asChild variant="secondary">
-             <Link href="/login">로그인</Link>
-           </Button>
+           <div className="flex items-center gap-2">
+            <Button asChild variant="secondary">
+              <Link href="/login">로그인</Link>
+            </Button>
+            <Button asChild variant="ghost" className="text-black hover:bg-primary/20">
+              <Link href="/signup">회원가입</Link>
+            </Button>
+           </div>
         )}
       </div>
     </header>
