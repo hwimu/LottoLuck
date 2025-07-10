@@ -51,8 +51,8 @@ export function Header() {
       ? "grid gap-6 text-lg font-medium" 
       : "hidden md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6";
     const linkClass = isMobile 
-      ? "text-primary-foreground/80 hover:text-white font-bold" 
-      : "transition-colors hover:text-white whitespace-nowrap font-bold";
+      ? "text-primary-foreground/80 hover:text-primary-foreground font-bold"
+      : "transition-colors hover:text-primary-foreground whitespace-nowrap font-bold";
 
     return (
       <nav className={navClass}>
@@ -63,7 +63,7 @@ export function Header() {
             onClick={(e) => handleLinkClick(e, href, auth)}
             className={cn(
               linkClass,
-              pathname === href ? "text-white font-semibold" : "text-primary-foreground/80",
+              pathname === href ? "text-primary-foreground font-semibold" : "text-primary-foreground/80",
             )}
           >
             {label}
@@ -75,16 +75,16 @@ export function Header() {
 
 
   return (
-    <header className="sticky top-0 flex h-20 items-center gap-4 border-b bg-primary px-4 md:px-6 z-40">
+    <header className="sticky top-0 flex h-20 items-center gap-4 border-b bg-primary px-4 md:px-6 z-40 shadow-lg">
       <Link
         href="/"
         className="flex items-center gap-2 text-lg font-semibold md:text-base mr-6"
       >
-        <LottoLuckLogo className="h-10 w-10 text-white" />
-        <h1 className="text-3xl font-black tracking-tighter text-white">LottoLuck</h1>
+        <LottoLuckLogo className="h-10 w-10 text-primary-foreground" />
+        <h1 className="text-3xl font-black tracking-tighter text-primary-foreground">LottoLuck</h1>
       </Link>
       
-      <div className="flex-1 items-center gap-5">
+      <div className="flex flex-1 items-center gap-5">
          <NavLinks />
       </div>
 
@@ -105,8 +105,8 @@ export function Header() {
               href="/"
               className="flex items-center gap-2 text-lg font-semibold mb-4"
             >
-              <LottoLuckLogo className="h-6 w-6 text-white" />
-               <h1 className="text-xl font-black tracking-tighter text-white">LottoLuck</h1>
+              <LottoLuckLogo className="h-6 w-6 text-primary-foreground" />
+               <h1 className="text-xl font-black tracking-tighter text-primary-foreground">LottoLuck</h1>
             </Link>
             {menuItems.map(({ href, label, auth }) => (
             <Link
@@ -114,8 +114,8 @@ export function Header() {
               href={href}
               onClick={(e) => handleLinkClick(e, href, auth)}
               className={cn(
-                "transition-colors hover:text-white whitespace-nowrap",
-                pathname === href ? "text-white font-semibold" : "text-primary-foreground/80"
+                "transition-colors hover:text-primary-foreground whitespace-nowrap",
+                pathname === href ? "text-primary-foreground font-semibold" : "text-primary-foreground/80"
               )}
             >
               {label}

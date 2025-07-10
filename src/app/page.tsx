@@ -1,7 +1,7 @@
 
 'use client';
 import Link from 'next/link';
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Cpu, History, Ticket, Users, ArrowRight } from "lucide-react";
 import { Separator } from '@/components/ui/separator';
 import { CommunityFeed } from '@/components/community-feed';
@@ -68,7 +68,7 @@ export default function Home() {
   return (
     <div className="flex-1 space-y-8 p-4 md:p-8 pt-6">
       <div className="space-y-2">
-        <h2 className="text-4xl font-black tracking-tighter" style={{ textShadow: '2px 2px 4px rgba(255,223,186,0.7)' }}>AI로 당신의 행운을 예측하세요</h2>
+        <h2 className="text-4xl font-black tracking-tighter text-primary">AI로 당신의 행운을 예측하세요</h2>
         <p className="text-muted-foreground">
           LottoLuck은 고급 AI 기술을 사용하여 최적의 로또 번호 조합을 추천합니다.
         </p>
@@ -76,7 +76,7 @@ export default function Home() {
       
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
         {features.map((feature) => (
-          <Card key={feature.title} className="hover:shadow-lg transition-shadow duration-300 group">
+          <Card key={feature.title} className="hover:shadow-xl transition-shadow duration-300 group border-0">
             <Link href={feature.href} onClick={(e) => handleLinkClick(e, feature.href, feature.auth)}>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <div className="space-y-2">
@@ -87,12 +87,12 @@ export default function Home() {
                   <feature.icon className={`h-6 w-6 ${feature.color}`} />
                 </div>
               </CardHeader>
-              <div className="p-6 pt-2">
+              <CardContent className="p-6 pt-2">
                  <div className="flex items-center text-sm font-medium text-primary group-hover:underline">
                     바로가기
                    <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                  </div>
-              </div>
+              </CardContent>
             </Link>
           </Card>
         ))}
