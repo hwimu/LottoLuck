@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -33,7 +34,7 @@ export default function CommunityPage() {
 
   useEffect(() => {
     if (!authLoading && !user) {
-      router.push('/login?reason=unauthenticated');
+      router.push('/login');
     }
   }, [user, authLoading, router]);
 

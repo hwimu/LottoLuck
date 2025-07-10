@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect } from 'react';
@@ -12,7 +13,7 @@ export default function RecentPage() {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push('/login?reason=unauthenticated');
+      router.push('/login');
     }
   }, [user, loading, router]);
 

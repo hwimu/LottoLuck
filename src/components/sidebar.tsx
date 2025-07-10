@@ -1,7 +1,8 @@
+
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Home, Cpu, History, Ticket, Users } from 'lucide-react';
 import {
   SidebarHeader,
@@ -10,17 +11,34 @@ import {
   SidebarMenuButton
 } from '@/components/ui/sidebar';
 import { LottoLuckLogo } from './lottoluck-logo';
+import { useAuth } from '@/context/auth-context';
+import { useToast } from '@/hooks/use-toast';
 
 const menuItems = [
-  { href: '/', label: '홈', icon: Home },
-  { href: '/analysis', label: 'AI 번호 예측', icon: Cpu },
-  { href: '/history', label: '나의 행운 기록', icon: History },
-  { href: '/recent', label: '금주의 당첨번호', icon: Ticket },
-  { href: '/community', label: '커뮤니티', icon: Users },
+  { href: '/', label: '홈', icon: Home, auth: false },
+  { href: '/analysis', label: 'AI 번호 예측', icon: Cpu, auth: true },
+  { href: '/history', label: '나의 행운 기록', icon: History, auth: true },
+  { href: '/recent', label: '금주의 당첨번호', icon: Ticket, auth: true },
+  { href: '/community', label: '커뮤니티', icon: Users, auth: true },
 ];
 
 export function SidebarMenu() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user } = useAuth();
+  const { toast } = useToast();
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, authRequired: boolean) => {
+    if (authRequired && !user) {
+      e.preventDefault();
+      toast({
+        title: '로그인 필요',
+        description: '로그인 후에 이용해 주세요.',
+      });
+      router.push('/login');
+    }
+  };
+
 
   return (
     <>
@@ -33,7 +51,7 @@ export function SidebarMenu() {
         </Link>
       </SidebarHeader>
       <SidebarMenuRoot>
-        {menuItems.map(({ href, label, icon: Icon }) => (
+        {menuItems.map(({ href, label, icon: Icon, auth }) => (
           <SidebarMenuItem key={href}>
             <SidebarMenuButton
               asChild
@@ -41,7 +59,7 @@ export function SidebarMenu() {
               variant="ghost"
               className="w-full justify-start"
             >
-              <Link href={href}>
+              <Link href={href} onClick={(e) => handleLinkClick(e, href, auth)}>
                 <Icon className="mr-2 h-5 w-5" />
                 {label}
               </Link>

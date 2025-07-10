@@ -1,9 +1,13 @@
+
 'use client';
 import Link from 'next/link';
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Cpu, History, Ticket, Users, ArrowRight } from "lucide-react";
 import { Separator } from '@/components/ui/separator';
 import { CommunityFeed } from '@/components/community-feed';
+import { useAuth } from '@/context/auth-context';
+import { useRouter } from 'next/navigation';
+import { useToast } from '@/hooks/use-toast';
 
 const features = [
   {
@@ -12,7 +16,8 @@ const features = [
     icon: Cpu,
     href: "/analysis",
     color: "text-blue-500",
-    bgColor: "bg-blue-50"
+    bgColor: "bg-blue-50",
+    auth: true,
   },
   {
     title: "나의 행운 기록",
@@ -20,7 +25,8 @@ const features = [
     icon: History,
     href: "/history",
     color: "text-green-500",
-    bgColor: "bg-green-50"
+    bgColor: "bg-green-50",
+    auth: true,
   },
   {
     title: "금주의 당첨번호",
@@ -28,7 +34,8 @@ const features = [
     icon: Ticket,
     href: "/recent",
     color: "text-yellow-500",
-    bgColor: "bg-yellow-50"
+    bgColor: "bg-yellow-50",
+    auth: true,
   },
   {
     title: "커뮤니티",
@@ -36,11 +43,27 @@ const features = [
     icon: Users,
     href: "/community",
     color: "text-purple-500",
-    bgColor: "bg-purple-50"
+    bgColor: "bg-purple-50",
+    auth: true,
   },
 ];
 
 export default function Home() {
+  const { user } = useAuth();
+  const router = useRouter();
+  const { toast } = useToast();
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, authRequired: boolean) => {
+    if (authRequired && !user) {
+      e.preventDefault();
+      toast({
+        title: '로그인 필요',
+        description: '로그인 후에 이용해 주세요.',
+      });
+      router.push('/login');
+    }
+  };
+
   return (
     <div className="flex-1 space-y-8 p-4 md:p-8 pt-6">
       <div className="space-y-2">
@@ -53,7 +76,7 @@ export default function Home() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
         {features.map((feature) => (
           <Card key={feature.title} className="hover:shadow-lg transition-shadow duration-300 group">
-            <Link href={feature.href}>
+            <Link href={feature.href} onClick={(e) => handleLinkClick(e, feature.href, feature.auth)}>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <div className="space-y-2">
                   <CardTitle className="text-xl font-bold">{feature.title}</CardTitle>
