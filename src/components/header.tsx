@@ -87,43 +87,44 @@ export function Header() {
          <NavLinks />
       </div>
 
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button
-            variant="outline"
-            size="icon"
-            className="shrink-0 md:hidden bg-primary border-primary-foreground/50 text-primary-foreground"
-          >
-            <Menu className="h-5 w-5" />
-            <span className="sr-only">Toggle navigation menu</span>
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="left" className="bg-primary text-primary-foreground">
-          <div className="grid gap-6 text-lg font-medium">
-             <Link
-              href="/"
-              className="flex items-center gap-2 text-lg font-semibold mb-4"
+      <div className="flex items-center gap-4 md:gap-2 lg:gap-4">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              variant="outline"
+              size="icon"
+              className="shrink-0 md:hidden bg-primary border-primary-foreground/50 text-primary-foreground"
             >
-              <Ticket className="h-6 w-6 text-white" />
-               <h1 className="text-xl font-black tracking-tighter text-white">LottoLuck</h1>
-            </Link>
-            {menuItems.map(({ href, label, auth }) => (
-            <Link
-              key={href}
-              href={href}
-              onClick={(e) => handleLinkClick(e, href, auth)}
-              className={cn(
-                "transition-colors hover:text-white whitespace-nowrap",
-                pathname === href ? "text-white font-semibold" : "text-primary-foreground/80"
-              )}
-            >
-              {label}
-            </Link>
-          ))}
-          </div>
-        </SheetContent>
-      </Sheet>
-      <div className="flex w-full items-center justify-end gap-4 md:ml-auto md:gap-2 lg:gap-4">
+              <Menu className="h-5 w-5" />
+              <span className="sr-only">Toggle navigation menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="bg-primary text-primary-foreground">
+            <div className="grid gap-6 text-lg font-medium">
+              <Link
+                href="/"
+                className="flex items-center gap-2 text-lg font-semibold mb-4"
+              >
+                <Ticket className="h-6 w-6 text-white" />
+                <h1 className="text-xl font-black tracking-tighter text-white">LottoLuck</h1>
+              </Link>
+              {menuItems.map(({ href, label, auth }) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={(e) => handleLinkClick(e, href, auth)}
+                className={cn(
+                  "transition-colors hover:text-white whitespace-nowrap",
+                  pathname === href ? "text-white font-semibold" : "text-primary-foreground/80"
+                )}
+              >
+                {label}
+              </Link>
+            ))}
+            </div>
+          </SheetContent>
+        </Sheet>
+        
         {loading ? null : user ? (
           <div className="flex items-center gap-2">
             <span className="text-black font-bold hidden sm:inline">안녕하세요, {userInitial}님!</span>
@@ -136,9 +137,9 @@ export function Header() {
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>내 계정</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                 <DropdownMenuItem disabled>
-                    {user.email}
-                </DropdownMenuItem>
+                  <DropdownMenuItem disabled>
+                      {user.email}
+                  </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={logout}>
                   <LogOut className="w-4 h-4 mr-2" />
@@ -148,14 +149,14 @@ export function Header() {
             </DropdownMenu>
           </div>
         ) : (
-           <div className="flex items-center gap-2">
-            <Button asChild variant="secondary">
-              <Link href="/login">로그인</Link>
-            </Button>
-            <Button asChild variant="ghost" className="text-black hover:bg-primary/20">
-              <Link href="/signup">회원가입</Link>
-            </Button>
-           </div>
+            <div className="flex items-center gap-2">
+              <Button asChild variant="secondary">
+                <Link href="/login">로그인</Link>
+              </Button>
+              <Button asChild variant="ghost" className="text-black hover:bg-primary/20">
+                <Link href="/signup">회원가입</Link>
+              </Button>
+            </div>
         )}
       </div>
     </header>
