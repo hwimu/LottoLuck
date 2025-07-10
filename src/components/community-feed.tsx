@@ -101,7 +101,7 @@ export function CommunityFeed() {
   const recentPosts = [...posts].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).slice(0, 4);
 
   return (
-    <div className="grid gap-8 md:grid-cols-2">
+    <div className="grid gap-8">
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>인기글</CardTitle>
@@ -109,7 +109,7 @@ export function CommunityFeed() {
              <Link href="/community">더보기</Link>
           </Button>
         </CardHeader>
-        <CardContent className="grid gap-4">
+        <CardContent className="grid gap-4 md:grid-cols-2">
           {isLoading ? (
             Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="h-28 w-full" />)
           ) : (
@@ -124,7 +124,7 @@ export function CommunityFeed() {
              <Link href="/community">더보기</Link>
           </Button>
         </CardHeader>
-        <CardContent className="grid gap-4">
+        <CardContent className="grid gap-4 md:grid-cols-2">
           {isLoading ? (
             Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="h-28 w-full" />)
           ) : (
