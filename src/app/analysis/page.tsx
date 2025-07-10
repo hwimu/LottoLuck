@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/auth-context';
-import { Header } from "@/components/header";
 import { StatisticsAnalysis } from "@/components/statistics-analysis";
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -19,32 +18,22 @@ export default function AnalysisPage() {
 
   if (loading || !user) {
     return (
-      <div className="min-h-screen bg-background">
-        <Header />
-        <main className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center">
-            <div className="w-full max-w-4xl space-y-8">
-               <Skeleton className="h-[600px] w-full" />
-            </div>
-          </div>
-        </main>
+      <div className="p-8">
+         <Skeleton className="h-[600px] w-full" />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-center">
-            <div className="w-full max-w-4xl">
-                <StatisticsAnalysis />
-            </div>
-        </div>
-      </main>
-      <footer className="py-8 mt-16 text-center text-muted-foreground text-sm border-t">
-        © {new Date().getFullYear()} LottoLuck. All rights reserved.
-      </footer>
+    <div className="flex-1 space-y-8 p-8 pt-6">
+      <div className="flex items-center justify-between space-y-2">
+        <h2 className="text-3xl font-bold tracking-tight">AI 번호 예측</h2>
+      </div>
+       <div className="flex justify-center">
+          <div className="w-full max-w-4xl">
+              <StatisticsAnalysis />
+          </div>
+      </div>
     </div>
   );
 }

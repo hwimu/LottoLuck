@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from '@/context/auth-context';
+import { AppLayout } from '@/components/app-layout';
 
 export const metadata: Metadata = {
   title: 'AI 행운 로또',
@@ -22,7 +23,9 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         <AuthProvider>
-          {children}
+          <AppLayout>
+            {children}
+          </AppLayout>
           <Toaster />
         </AuthProvider>
       </body>

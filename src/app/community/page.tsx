@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/auth-context';
-import { Header } from '@/components/header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -129,32 +128,23 @@ export default function CommunityPage() {
 
   if (authLoading || !user) {
     return (
-      <div className="min-h-screen bg-background">
-        <Header />
-        <main className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <div className="space-y-8">
-            <Skeleton className="h-10 w-1/3 mb-8" />
-            <Skeleton className="h-48 w-full" />
-            <Skeleton className="h-64 w-full" />
-            <Skeleton className="h-64 w-full" />
-          </div>
-        </main>
+      <div className="p-8 space-y-8">
+        <Skeleton className="h-10 w-1/3 mb-8" />
+        <Skeleton className="h-48 w-full" />
+        <Skeleton className="h-64 w-full" />
+        <Skeleton className="h-64 w-full" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="text-left mb-12">
-          <h2 className="text-4xl font-extrabold tracking-tighter sm:text-5xl">
-            커뮤니티
-          </h2>
-          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-            다른 사용자들과 자유롭게 의견을 나누고 행운의 기운을 받아보세요!
-          </p>
-        </div>
+    <div className="flex-1 space-y-8 p-8 pt-6">
+       <div className="flex items-center justify-between space-y-2">
+         <h2 className="text-3xl font-bold tracking-tight">커뮤니티</h2>
+       </div>
+       <p className="text-muted-foreground">
+          다른 사용자들과 자유롭게 의견을 나누고 행운의 기운을 받아보세요!
+       </p>
 
         <Card className="mb-12 shadow-lg border">
           <CardHeader>
@@ -240,10 +230,6 @@ export default function CommunityPage() {
             ))}
           </div>
         )}
-      </main>
-      <footer className="py-8 mt-16 text-center text-muted-foreground text-sm border-t">
-        © {new Date().getFullYear()} LottoLuck. All rights reserved.
-      </footer>
     </div>
   );
 }
