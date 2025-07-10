@@ -5,15 +5,14 @@ import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { LottoBall } from './lotto-ball';
 import { ThumbsUp, MessageSquare } from 'lucide-react';
 import { useAuth } from '@/context/auth-context';
 
 export interface Post {
   id: string;
   author: string;
-  numbers: number[];
-  content?: string;
+  title: string;
+  content: string;
   votes: number;
   voters: string[];
   comments: Comment[];
@@ -69,24 +68,22 @@ export function PostCard({ post, onUpdate, currentUserEmail }: PostCardProps) {
   return (
     <Card className="shadow-lg border w-full">
       <CardHeader>
-        <div className="flex justify-between items-center">
-          <CardTitle className="text-xl font-bold">
-            {post.author.split('@')[0]}님의 예측
-          </CardTitle>
-          <p className="text-sm text-muted-foreground">
+        <div className="flex justify-between items-start">
+            <div>
+                <CardTitle className="text-xl font-bold">
+                    {post.title}
+                </CardTitle>
+                 <p className="text-sm text-muted-foreground pt-1">
+                    작성자: {post.author.split('@')[0]}
+                </p>
+            </div>
+          <p className="text-sm text-muted-foreground text-right shrink-0">
             {new Date(post.date).toLocaleDateString('ko-KR')}
           </p>
         </div>
       </CardHeader>
       <CardContent className="space-y-4 p-6 pt-0">
-        {post.content && (
-            <CardDescription className="text-base text-foreground bg-muted p-4 rounded-lg">{post.content}</CardDescription>
-        )}
-        <div className="flex flex-wrap gap-3">
-          {post.numbers.map((num, index) => (
-            <LottoBall key={index} number={num} className="w-12 h-12 text-xl" />
-          ))}
-        </div>
+        <CardDescription className="text-base text-foreground bg-muted p-4 rounded-lg whitespace-pre-wrap">{post.content}</CardDescription>
       </CardContent>
       <CardFooter className="flex-col items-start gap-4 p-6 pt-0">
         <div className="flex items-center gap-4">

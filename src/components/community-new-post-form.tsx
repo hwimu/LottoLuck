@@ -13,18 +13,8 @@ import type { Post } from './community-post-card';
 import { useToast } from '@/hooks/use-toast';
 
 const FormSchema = z.object({
-  numbers: z.string().refine(
-    (value) => {
-      const numbers = value.split(',').map(n => n.trim()).filter(n => n);
-      if (numbers.length !== 6) return false;
-      return numbers.every(n => {
-        const num = parseInt(n, 10);
-        return !isNaN(num) && num >= 1 && num <= 45;
-      });
-    },
-    '1부터 45 사이의 숫자 6개를 쉼표로 구분하여 입력해주세요.'
-  ),
-  content: z.string().optional(),
+  title: z.string().min(1, '제목을 입력해주세요.'),
+  content: z.string().min(1, '의견을 입력해주세요.'),
 });
 
 type FormData = z.infer<typeof FormSchema>;
@@ -39,7 +29,7 @@ export function NewPostForm({ onSubmit }: NewPostFormProps) {
   const form = useForm<FormData>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      numbers: '',
+      title: '',
       content: '',
     },
   });
@@ -57,7 +47,7 @@ export function NewPostForm({ onSubmit }: NewPostFormProps) {
     const newPost: Post = {
       id: new Date().toISOString() + Math.random(),
       author: user.email,
-      numbers: data.numbers.split(',').map(n => parseInt(n.trim(), 10)),
+      title: data.title,
       content: data.content,
       votes: 0,
       voters: [],
@@ -73,12 +63,12 @@ export function NewPostForm({ onSubmit }: NewPostFormProps) {
       <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6 py-4">
         <FormField
           control={form.control}
-          name="numbers"
+          name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>예측 번호 6개</FormLabel>
+              <FormLabel>제목</FormLabel>
               <FormControl>
-                <Input placeholder="예: 1, 12, 23, 34, 40, 45" {...field} />
+                <Input placeholder="게시물 제목을 입력하세요." {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -89,9 +79,9 @@ export function NewPostForm({ onSubmit }: NewPostFormProps) {
           name="content"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>의견 (선택)</FormLabel>
+              <FormLabel>의견</FormLabel>
               <FormControl>
-                <Textarea placeholder="예측에 대한 의견이나 분석을 자유롭게 공유해보세요." {...field} />
+                <Textarea placeholder="의견을 자유롭게 공유해보세요." {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

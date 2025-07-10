@@ -95,7 +95,7 @@ export default function CommunityPage() {
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
-                        <DialogTitle>새 예측 번호 공유</DialogTitle>
+                        <DialogTitle>새 게시물 작성</DialogTitle>
                     </DialogHeader>
                     <NewPostForm onSubmit={handleNewPost} />
                 </DialogContent>
@@ -116,7 +116,7 @@ export default function CommunityPage() {
           ) : (
             <div className="text-center py-16 border-2 border-dashed rounded-lg">
               <h3 className="text-2xl font-bold text-muted-foreground">아직 게시물이 없습니다.</h3>
-              <p className="text-lg mt-2 text-muted-foreground">가장 먼저 예측 번호를 공유해보세요!</p>
+              <p className="text-lg mt-2 text-muted-foreground">가장 먼저 게시물을 작성해보세요!</p>
             </div>
           )}
         </div>
