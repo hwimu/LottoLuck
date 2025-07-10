@@ -68,9 +68,9 @@ export default function Home() {
   return (
     <div className="flex-1 space-y-8 p-4 md:p-8 pt-6">
       <div className="space-y-2">
-        <h2 className="text-3xl font-bold tracking-tight">안녕하세요!</h2>
+        <h2 className="text-4xl font-black tracking-tighter" style={{ textShadow: '2px 2px 4px rgba(255,223,186,0.7)' }}>AI로 당신의 행운을 예측하세요</h2>
         <p className="text-muted-foreground">
-          LottoLuck에 오신 것을 환영합니다. 무엇을 도와드릴까요?
+          LottoLuck은 고급 AI 기술을 사용하여 최적의 로또 번호 조합을 추천합니다.
         </p>
       </div>
       
