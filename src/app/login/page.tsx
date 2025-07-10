@@ -33,7 +33,6 @@ function LoginFormComponent() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Mock login, password is not validated in this version.
     if (email && password) {
       const success = login(email);
       if (!success) {
