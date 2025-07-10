@@ -22,24 +22,6 @@ export function Header() {
             {user && (
               <>
                 <Button asChild variant="ghost" size="lg" className="hover:bg-primary/80">
-                    <Link href="/analysis">
-                        <Sparkles className="mr-2 h-5 w-5" />
-                        AI 번호 예측
-                    </Link>
-                </Button>
-                <Button asChild variant="ghost" size="lg" className="hover:bg-primary/80">
-                    <Link href="/recent">
-                        <Ticket className="mr-2 h-5 w-5" />
-                        금주의 당첨번호
-                    </Link>
-                </Button>
-                <Button asChild variant="ghost" size="lg" className="hover:bg-primary/80">
-                    <Link href="/history">
-                        <History className="mr-2 h-5 w-5" />
-                        나의 행운 기록
-                    </Link>
-                </Button>
-                <Button asChild variant="ghost" size="lg" className="hover:bg-primary/80">
                     <Link href="/community">
                         <MessageSquare className="mr-2 h-5 w-5" />
                         커뮤니티

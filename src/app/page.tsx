@@ -2,7 +2,7 @@
 import { Header } from "@/components/header";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Sparkles, History, Ticket, MessageSquare } from "lucide-react";
+import { Sparkles, History, Ticket } from "lucide-react";
 
 export default function Home() {
   const features = [
@@ -24,12 +24,6 @@ export default function Home() {
         href: "/history",
         icon: <History className="w-10 h-10 text-primary" />,
     },
-    {
-      title: "커뮤니티",
-      description: "다른 사용자들과 예측 번호를 공유하고 의견을 나눠보세요.",
-      href: "/community",
-      icon: <MessageSquare className="w-10 h-10 text-primary" />,
-    }
   ];
 
   return (
