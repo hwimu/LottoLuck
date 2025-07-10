@@ -1,7 +1,7 @@
 'use client';
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Sparkles, History, Ticket } from "lucide-react";
+import { Users, History, Ticket } from "lucide-react";
 import { Header } from "@/components/header";
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
       title: "AI 번호 예측",
       description: "과거 당첨 번호를 입력하여 AI의 분석과 추천 번호를 받아보세요.",
       href: "/analysis",
-      icon: <Sparkles className="w-8 h-8 mb-4 text-primary" />,
+      icon: <Users className="w-8 h-8 mb-4 text-primary" />,
     },
     {
       title: "금주의 당첨번호",
@@ -23,6 +23,12 @@ export default function Home() {
       description: "과거에 AI가 추천했던 번호 조합들을 확인해보세요.",
       href: "/history",
       icon: <History className="w-8 h-8 mb-4 text-primary" />,
+    },
+    {
+        title: "커뮤니티",
+        description: "다른 사용자들과 예측 번호를 공유하고 의견을 나눠보세요.",
+        href: "/community",
+        icon: <Users className="w-8 h-8 mb-4 text-primary" />,
     },
   ];
 
@@ -47,7 +53,7 @@ export default function Home() {
         
         <section className="w-full pb-20 md:pb-32">
           <div className="container px-4 md:px-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((feature) => (
                 <Link href={feature.href} key={feature.title} className="block group">
                   <Card className="h-full flex flex-col text-left p-8 transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 bg-card border rounded-lg">
@@ -66,7 +72,7 @@ export default function Home() {
         </section>
       </main>
       <footer className="py-8 text-center text-muted-foreground text-sm border-t">
-        © {new Date().getFullYear() + 1} LottoLuck. All rights reserved.
+        © {new Date().getFullYear()} LottoLuck. All rights reserved.
       </footer>
     </div>
   );
