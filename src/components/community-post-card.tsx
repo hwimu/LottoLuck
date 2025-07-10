@@ -2,7 +2,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { LottoBall } from './lotto-ball';
@@ -13,6 +13,7 @@ export interface Post {
   id: string;
   author: string;
   numbers: number[];
+  content?: string;
   votes: number;
   voters: string[];
   comments: Comment[];
@@ -77,10 +78,15 @@ export function PostCard({ post, onUpdate, currentUserEmail }: PostCardProps) {
           </p>
         </div>
       </CardHeader>
-      <CardContent className="flex flex-wrap gap-3 p-6 pt-0">
-        {post.numbers.map((num, index) => (
-          <LottoBall key={index} number={num} className="w-12 h-12 text-xl" />
-        ))}
+      <CardContent className="space-y-4 p-6 pt-0">
+        {post.content && (
+            <CardDescription className="text-base text-foreground bg-muted p-4 rounded-lg">{post.content}</CardDescription>
+        )}
+        <div className="flex flex-wrap gap-3">
+          {post.numbers.map((num, index) => (
+            <LottoBall key={index} number={num} className="w-12 h-12 text-xl" />
+          ))}
+        </div>
       </CardContent>
       <CardFooter className="flex-col items-start gap-4 p-6 pt-0">
         <div className="flex items-center gap-4">
