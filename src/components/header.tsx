@@ -22,7 +22,7 @@ export function Header() {
   const userInitial = user?.email.split('@')[0] || "사용자";
 
   return (
-    <header className="sticky top-0 z-30 flex h-20 items-center gap-4 border-b bg-primary px-4 sm:static sm:h-auto sm:border-0 sm:bg-primary sm:px-6">
+    <header className="sticky top-0 z-30 flex h-24 items-center gap-4 border-b bg-primary px-4 sm:static sm:h-auto sm:border-0 sm:bg-primary sm:px-6">
        <Button
         size="icon"
         variant="outline"

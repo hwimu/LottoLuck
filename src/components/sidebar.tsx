@@ -45,8 +45,8 @@ export function SidebarMenu() {
     <>
       <SidebarHeader>
         <Link href="/" className="flex items-center gap-3">
-          <LottoLuckLogo className="h-8 w-8" />
-          <h1 className="text-2xl font-black tracking-tighter text-foreground">
+          <LottoLuckLogo className="h-8 w-8 text-white" />
+          <h1 className="text-2xl font-black tracking-tighter text-white">
             LottoLuck
           </h1>
         </Link>
