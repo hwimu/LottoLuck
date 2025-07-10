@@ -7,7 +7,6 @@ import { useAuth } from '@/context/auth-context';
 import { Header } from '@/components/header';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LottoBall } from '@/components/lotto-ball';
-import { History as HistoryIcon } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 
@@ -50,10 +49,7 @@ export default function HistoryPage() {
         <Header />
         <main className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
           <div className="space-y-8">
-            <div className="text-left mb-16">
-                <Skeleton className="h-16 w-3/4" />
-                <Skeleton className="h-8 w-1/2 mt-6" />
-            </div>
+             <Skeleton className="h-10 w-1/3 mb-8" />
             <Skeleton className="h-64 w-full" />
             <Skeleton className="h-64 w-full" />
           </div>
@@ -63,15 +59,14 @@ export default function HistoryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background selection:bg-primary/20">
+    <div className="min-h-screen bg-background">
       <Header />
       <main className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="text-left mb-16">
-            <h2 className="text-5xl font-extrabold tracking-tighter sm:text-6xl md:text-6xl text-foreground flex items-center gap-4">
-              <HistoryIcon className="w-12 h-12 text-primary" />
+        <div className="text-left mb-12">
+            <h2 className="text-4xl font-extrabold tracking-tighter sm:text-5xl">
               나의 행운 기록
             </h2>
-            <p className="mt-6 max-w-2xl text-xl text-muted-foreground">
+            <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
               과거에 AI가 추천했던 번호 조합들을 확인해보세요.
             </p>
         </div>
@@ -104,7 +99,7 @@ export default function HistoryPage() {
                 </CardHeader>
                 <CardContent className="space-y-6 p-8 pt-0">
                   {entry.combinations.map((combo, comboIndex) => (
-                    <div key={comboIndex} className="flex flex-wrap gap-4 p-4 rounded-lg bg-muted">
+                    <div key={comboIndex} className="flex flex-wrap gap-4 p-4 rounded-lg bg-muted/50">
                       {combo.map((num) => (
                         <LottoBall key={`${comboIndex}-${num}`} number={num} />
                       ))}

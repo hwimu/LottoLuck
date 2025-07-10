@@ -33,7 +33,7 @@ export default function RecentPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background selection:bg-primary/20">
+    <div className="min-h-screen bg-background">
       <Header />
       <main className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-center">
