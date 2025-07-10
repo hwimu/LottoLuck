@@ -1,6 +1,6 @@
 'use client';
 
-import { LogOut, Sparkles, Ticket, History } from "lucide-react";
+import { LogIn, LogOut, UserPlus, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { useAuth } from "@/context/auth-context";
@@ -8,56 +8,42 @@ import { LottoLuckLogo } from "./lottoluck-logo";
 
 export function Header() {
   const { user, logout, loading } = useAuth();
-
-  const navLinks = [
-    { href: "/analysis", label: "AI 번호 예측", icon: <Sparkles className="w-4 h-4" /> },
-    { href: "/recent", label: "금주의 당첨번호", icon: <Ticket className="w-4 h-4" /> },
-    { href: "/history", label: "나의 행운 기록", icon: <History className="w-4 h-4" /> },
-  ]
+  
+  const userInitial = user?.email.split('@')[0];
 
   return (
-    <header className="py-4 px-4 sm:px-6 lg:px-8 border-b bg-card/80 backdrop-blur-sm sticky top-0 z-50">
-      <div className="container mx-auto flex items-center justify-between gap-4">
+    <header className="py-4 px-4 sm:px-6 lg:px-8 bg-primary">
+      <div className="container mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
-          <LottoLuckLogo className="w-8 h-8 text-primary" />
-          <h1 className="text-2xl font-black tracking-tighter text-foreground">
+          <LottoLuckLogo className="w-8 h-8 text-primary-foreground" />
+          <h1 className="text-2xl font-black tracking-tighter text-primary-foreground">
             LottoLuck
           </h1>
         </Link>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           {loading ? null : user ? (
             <>
-              <nav className="hidden md:flex items-center gap-2">
-                {navLinks.map(link => (
-                  <Button asChild variant="ghost" key={link.href}>
-                    <Link href={link.href} className="flex items-center gap-2">
-                      {link.icon}
-                      {link.label}
-                    </Link>
-                  </Button>
-                ))}
-              </nav>
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-muted-foreground">{user.email}</span>
-                <Button onClick={logout} variant="outline" size="icon" className="w-9 h-9">
-                  <LogOut className="w-4 h-4" />
-                  <span className="sr-only">로그아웃</span>
-                </Button>
-              </div>
+              <span className="text-sm font-medium text-primary-foreground hidden sm:inline">안녕하세요, {userInitial}님!</span>
+              <Button onClick={logout} variant="ghost" className="text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground">
+                <LogOut className="w-4 h-4 mr-2" />
+                로그아웃
+              </Button>
             </>
           ) : (
-            <div className="flex items-center gap-2">
-              <Button asChild variant="ghost">
+            <>
+              <Button asChild variant="ghost" className="text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground">
                 <Link href="/login">
+                  <ArrowRight className="w-4 h-4 mr-2" />
                   로그인
                 </Link>
               </Button>
-              <Button asChild>
+              <Button asChild variant="secondary" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90">
                 <Link href="/signup">
+                  <UserPlus className="w-4 h-4 mr-2" />
                   회원가입
                 </Link>
               </Button>
-            </div>
+            </>
           )}
         </div>
       </div>

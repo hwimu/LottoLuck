@@ -1,9 +1,8 @@
 'use client';
-import { Header } from "@/components/header";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Sparkles, History, Ticket } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Header } from "@/components/header";
 
 export default function Home() {
   const features = [
@@ -31,12 +30,11 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
       <main className="flex-1">
-        <section className="w-full py-24 md:py-32 lg:py-40">
+        <section className="w-full py-24 md:py-32 lg:py-40 bg-background">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-6 text-center">
               <h1 
-                className="text-5xl font-black sm:text-6xl md:text-7xl lg:text-8xl tracking-tighter"
-                style={{ textShadow: '0 4px 12px hsl(var(--primary) / 0.5)' }}
+                className="text-5xl font-black sm:text-6xl md:text-7xl lg:text-8xl tracking-tighter text-foreground"
               >
                 AI로 당신의 행운을 예측하세요
               </h1>
@@ -52,7 +50,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {features.map((feature) => (
                 <Link href={feature.href} key={feature.title} className="block group">
-                  <Card className="h-full flex flex-col text-left p-8 transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 border-2 border-transparent hover:border-primary/50 bg-card">
+                  <Card className="h-full flex flex-col text-left p-8 transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 bg-card border rounded-lg">
                     <CardHeader className="p-0">
                       {feature.icon}
                       <CardTitle className="text-2xl font-bold">{feature.title}</CardTitle>
@@ -68,7 +66,7 @@ export default function Home() {
         </section>
       </main>
       <footer className="py-8 text-center text-muted-foreground text-sm border-t">
-        © {new Date().getFullYear()} LottoLuck. All rights reserved.
+        © {new Date().getFullYear() + 1} LottoLuck. All rights reserved.
       </footer>
     </div>
   );
