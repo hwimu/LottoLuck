@@ -34,7 +34,7 @@ const PostCard = ({ post }: { post: Post }) => (
       </CollapsibleTrigger>
       <CollapsibleContent>
         <CardContent className="space-y-4 pt-0">
-            <p className="text-sm text-foreground/90 p-3 bg-muted/50 rounded-lg truncate">
+            <p className="text-sm text-foreground/90 p-3 bg-muted/50 rounded-lg">
               {post.content}
             </p>
         </CardContent>
