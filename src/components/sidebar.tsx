@@ -35,16 +35,17 @@ export function SidebarMenu() {
       <SidebarMenuRoot>
         {menuItems.map(({ href, label, icon: Icon }) => (
           <SidebarMenuItem key={href}>
-            <Link href={href} legacyBehavior passHref>
-              <SidebarMenuButton
-                isActive={pathname === href}
-                variant="ghost"
-                className="w-full justify-start"
-              >
+            <SidebarMenuButton
+              asChild
+              isActive={pathname === href}
+              variant="ghost"
+              className="w-full justify-start"
+            >
+              <Link href={href}>
                 <Icon className="mr-2 h-5 w-5" />
                 {label}
-              </SidebarMenuButton>
-            </Link>
+              </Link>
+            </SidebarMenuButton>
           </SidebarMenuItem>
         ))}
       </SidebarMenuRoot>
