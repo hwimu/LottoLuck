@@ -51,8 +51,8 @@ export function Header() {
       ? "grid gap-6 text-lg font-medium" 
       : "hidden md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6";
     const linkClass = isMobile 
-      ? "text-primary-foreground/80 hover:text-white" 
-      : "transition-colors hover:text-white whitespace-nowrap";
+      ? "text-primary-foreground/80 hover:text-white font-bold" 
+      : "transition-colors hover:text-white whitespace-nowrap font-bold";
 
     return (
       <nav className={navClass}>
