@@ -5,6 +5,7 @@ import { ThumbsUp, MessageSquare, UserCircle } from "lucide-react";
 import { Skeleton } from './ui/skeleton';
 import { Button } from './ui/button';
 import Link from 'next/link';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 
 type Post = {
   id: number;
@@ -18,31 +19,39 @@ type Post = {
 
 const PostCard = ({ post }: { post: Post }) => (
   <Card>
-    <CardHeader className="pb-4">
-      <CardTitle className="text-lg font-bold">{post.title}</CardTitle>
-      <CardDescription className="flex items-center gap-2 pt-2 text-sm">
-        <UserCircle className="w-4 h-4" />
-        {post.author}
-        <span className="text-xs text-muted-foreground/80">
-          - {new Date(post.createdAt).toLocaleDateString('ko-KR')}
-        </span>
-      </CardDescription>
-    </CardHeader>
-    <CardContent className="space-y-4">
-      <p className="text-sm text-foreground/90 p-3 bg-muted/50 rounded-lg truncate">
-        {post.content}
-      </p>
-      <div className="flex items-center gap-4 text-xs text-muted-foreground">
-        <div className="flex items-center gap-1">
-          <ThumbsUp className="w-3 h-3" />
-          {post.votes}
-        </div>
-        <div className="flex items-center gap-1">
-          <MessageSquare className="w-3 h-3" />
-          {post.comments.length}
-        </div>
-      </div>
-    </CardContent>
+    <Collapsible>
+      <CollapsibleTrigger className="w-full text-left">
+        <CardHeader className="pb-4">
+          <CardTitle className="text-lg font-bold">{post.title}</CardTitle>
+          <CardDescription className="flex items-center gap-2 pt-2 text-sm">
+            <UserCircle className="w-4 h-4" />
+            {post.author}
+            <span className="text-xs text-muted-foreground/80">
+              - {new Date(post.createdAt).toLocaleDateString('ko-KR')}
+            </span>
+          </CardDescription>
+        </CardHeader>
+      </CollapsibleTrigger>
+      <CollapsibleContent>
+        <CardContent className="space-y-4 pt-0">
+            <p className="text-sm text-foreground/90 p-3 bg-muted/50 rounded-lg truncate">
+              {post.content}
+            </p>
+        </CardContent>
+      </CollapsibleContent>
+      <CardContent className="pt-0">
+         <div className="flex items-center gap-4 text-xs text-muted-foreground">
+            <div className="flex items-center gap-1">
+              <ThumbsUp className="w-3 h-3" />
+              {post.votes}
+            </div>
+            <div className="flex items-center gap-1">
+              <MessageSquare className="w-3 h-3" />
+              {post.comments.length}
+            </div>
+          </div>
+      </CardContent>
+    </Collapsible>
   </Card>
 );
 
@@ -96,7 +105,7 @@ export function CommunityFeed() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>인기글</CardTitle>
-          <Button asChild variant="link" className="text-sm">
+          <Button asChild variant="link" className="text-sm text-primary">
              <Link href="/community">더보기</Link>
           </Button>
         </CardHeader>
@@ -111,7 +120,7 @@ export function CommunityFeed() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>실시간 글</CardTitle>
-           <Button asChild variant="link" className="text-sm">
+           <Button asChild variant="link" className="text-sm text-primary">
              <Link href="/community">더보기</Link>
           </Button>
         </CardHeader>
