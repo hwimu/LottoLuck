@@ -34,21 +34,24 @@ export function Header() {
       </Button>
       <div className="flex items-center gap-2 ml-auto">
         {loading ? null : user ? (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon" className="overflow-hidden rounded-full">
-                <UserCircle className="w-6 h-6" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>안녕하세요, {userInitial}님!</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={logout}>
-                <LogOut className="w-4 h-4 mr-2" />
-                로그아웃
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <>
+            <span className="text-primary-foreground font-semibold">안녕하세요, {userInitial}님!</span>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="overflow-hidden rounded-full">
+                  <UserCircle className="w-6 h-6 text-primary-foreground" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>내 계정</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={logout}>
+                  <LogOut className="w-4 h-4 mr-2" />
+                  로그아웃
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </>
         ) : null}
       </div>
     </header>
