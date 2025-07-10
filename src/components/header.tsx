@@ -18,8 +18,8 @@ export function Header() {
               LottoLuck
             </h1>
         </Link>
-        <nav className="hidden md:flex items-center gap-2">
-            {user && (
+        <div className="hidden md:flex items-center gap-4 ml-auto">
+            {loading ? null : user ? (
               <>
                 <Button asChild variant="ghost" size="lg" className="hover:bg-primary/80">
                     <Link href="/community">
@@ -27,12 +27,6 @@ export function Header() {
                         커뮤니티
                     </Link>
                 </Button>
-              </>
-            )}
-        </nav>
-        <div className="hidden md:flex items-center gap-4 ml-auto">
-            {loading ? null : user ? (
-              <>
                 <div className="flex items-center gap-2">
                   <UserIcon className="w-6 h-6" />
                   <span className="text-lg font-medium">{user.email.split('@')[0]}</span>
