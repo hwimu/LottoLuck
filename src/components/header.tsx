@@ -80,8 +80,8 @@ export function Header() {
         href="/"
         className="flex items-center gap-2 text-lg font-semibold md:text-base mr-6"
       >
-        <LottoLuckLogo className="h-8 w-8 text-white" />
-        <h1 className="text-2xl font-black tracking-tighter text-white">LottoLuck</h1>
+        <LottoLuckLogo className="h-10 w-10 text-white" />
+        <h1 className="text-3xl font-black tracking-tighter text-white">LottoLuck</h1>
       </Link>
       
       <div className="flex-1 items-center gap-5">
