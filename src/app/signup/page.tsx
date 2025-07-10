@@ -1,6 +1,7 @@
+
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/context/auth-context';
 import { Button } from '@/components/ui/button';
@@ -8,8 +9,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { UserPlus } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
 
-export default function SignupPage() {
+function SignupFormComponent() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { signup } = useAuth();
@@ -23,7 +25,6 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-background">
       <Card className="mx-auto max-w-sm w-full shadow-2xl">
         <CardHeader>
           <CardTitle className="text-3xl font-bold flex items-center gap-3">
@@ -69,6 +70,16 @@ export default function SignupPage() {
           </div>
         </CardContent>
       </Card>
+  );
+}
+
+
+export default function SignupPage() {
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-background">
+      <Suspense fallback={<Skeleton className="h-[450px] w-full max-w-sm" />}>
+        <SignupFormComponent />
+      </Suspense>
     </div>
   );
 }
