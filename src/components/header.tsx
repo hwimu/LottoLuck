@@ -6,7 +6,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import { LogOut, UserCircle, Home, Cpu, History, Ticket, Users, Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import { useAuth } from "@/context/auth-context";
-import { LottoLuckLogo } from "./lottoluck-logo";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -51,8 +50,8 @@ export function Header() {
       ? "grid gap-6 text-lg font-medium" 
       : "hidden md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6";
     const linkClass = isMobile 
-      ? "text-primary-foreground/80 hover:text-primary-foreground font-bold"
-      : "transition-colors hover:text-primary-foreground whitespace-nowrap font-bold";
+      ? "text-primary-foreground/80 hover:text-white font-bold"
+      : "transition-colors hover:text-white whitespace-nowrap font-bold";
 
     return (
       <nav className={navClass}>
@@ -63,7 +62,7 @@ export function Header() {
             onClick={(e) => handleLinkClick(e, href, auth)}
             className={cn(
               linkClass,
-              pathname === href ? "text-black font-semibold" : "text-black/80",
+              pathname === href ? "text-white font-semibold" : "text-black/80",
             )}
           >
             {label}
@@ -114,8 +113,8 @@ export function Header() {
               href={href}
               onClick={(e) => handleLinkClick(e, href, auth)}
               className={cn(
-                "transition-colors hover:text-primary-foreground whitespace-nowrap",
-                pathname === href ? "text-primary-foreground font-semibold" : "text-primary-foreground/80"
+                "transition-colors hover:text-white whitespace-nowrap",
+                pathname === href ? "text-white font-semibold" : "text-primary-foreground/80"
               )}
             >
               {label}
