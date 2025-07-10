@@ -1,7 +1,9 @@
 
 'use client';
 
-import { LogOut, UserCircle } from "lucide-react";
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+import { LogOut, UserCircle, Home, Cpu, History, Ticket, Users, Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import { useAuth } from "@/context/auth-context";
 import { LottoLuckLogo } from "./lottoluck-logo";
@@ -13,37 +15,110 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu"
-import { useSidebar } from "./ui/sidebar";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { useToast } from '@/hooks/use-toast';
+import { cn } from '@/lib/utils';
+
+const menuItems = [
+  { href: '/', label: '홈', icon: Home, auth: false },
+  { href: '/analysis', label: 'AI 번호 예측', icon: Cpu, auth: true },
+  { href: '/history', label: '나의 행운 기록', icon: History, auth: true },
+  { href: '/recent', label: '금주의 당첨번호', icon: Ticket, auth: true },
+  { href: '/community', label: '커뮤니티', icon: Users, auth: true },
+];
 
 export function Header() {
   const { user, logout, loading } = useAuth();
-  const { toggleSidebar } = useSidebar();
-  
   const userInitial = user?.email.split('@')[0] || "사용자";
+  const pathname = usePathname();
+  const router = useRouter();
+  const { toast } = useToast();
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, authRequired: boolean) => {
+    if (authRequired && !user) {
+      e.preventDefault();
+      toast({
+        title: '로그인 필요',
+        description: '로그인 후에 이용해 주세요.',
+        variant: 'destructive',
+      });
+      router.push('/login?reason=unauthenticated');
+    }
+  };
+
+  const NavLinks = ({ className }: { className?: string }) => (
+    <>
+      {menuItems.map(({ href, label, auth }) => (
+        <Link
+          key={href}
+          href={href}
+          onClick={(e) => handleLinkClick(e, href, auth)}
+          className={cn(
+            "transition-colors hover:text-white",
+            pathname === href ? "text-white font-semibold" : "text-primary-foreground/80",
+            className
+          )}
+        >
+          {label}
+        </Link>
+      ))}
+    </>
+  );
 
   return (
-    <header className="sticky top-0 z-30 flex h-20 items-center gap-4 border-b bg-primary px-4 sm:px-6">
-       <Button
-        size="icon"
-        variant="outline"
-        className="sm:hidden"
-        onClick={toggleSidebar}
-      >
-        <LottoLuckLogo className="h-5 w-5" />
-        <span className="sr-only">Toggle Menu</span>
-      </Button>
-      <div className="flex items-center gap-2 ml-auto">
+    <header className="sticky top-0 flex h-20 items-center gap-4 border-b bg-primary px-4 md:px-6 z-40">
+       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+        <Link
+          href="/"
+          className="flex items-center gap-2 text-lg font-semibold md:text-base"
+        >
+          <LottoLuckLogo className="h-8 w-8 text-white" />
+          <h1 className="text-2xl font-black tracking-tighter text-white">LottoLuck</h1>
+        </Link>
+        <div className="flex items-center gap-5 pl-6">
+           <NavLinks />
+        </div>
+      </nav>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button
+            variant="outline"
+            size="icon"
+            className="shrink-0 md:hidden bg-primary border-primary-foreground/50 text-primary-foreground"
+          >
+            <Menu className="h-5 w-5" />
+            <span className="sr-only">Toggle navigation menu</span>
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="left" className="bg-primary text-primary-foreground">
+          <nav className="grid gap-6 text-lg font-medium">
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-lg font-semibold"
+            >
+              <LottoLuckLogo className="h-6 w-6 text-white" />
+               <h1 className="text-xl font-black tracking-tighter text-white">LottoLuck</h1>
+            </Link>
+            <NavLinks className="text-primary-foreground/80 hover:text-white"/>
+          </nav>
+        </SheetContent>
+      </Sheet>
+      <div className="flex w-full items-center justify-end gap-4 md:ml-auto md:gap-2 lg:gap-4">
         {loading ? null : user ? (
-          <>
-            <span className="text-primary-foreground font-bold">안녕하세요, {userInitial}님!</span>
+          <div className="flex items-center gap-2">
+            <span className="text-primary-foreground font-bold hidden sm:inline">안녕하세요, {userInitial}님!</span>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="overflow-hidden rounded-full">
+                <Button variant="ghost" size="icon" className="overflow-hidden rounded-full hover:bg-primary/80">
                   <UserCircle className="w-6 h-6 text-primary-foreground" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>내 계정</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                 <DropdownMenuItem disabled>
+                    {user.email}
+                </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={logout}>
                   <LogOut className="w-4 h-4 mr-2" />
@@ -51,8 +126,12 @@ export function Header() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </>
-        ) : null}
+          </div>
+        ) : (
+           <Button asChild variant="secondary">
+             <Link href="/login">로그인</Link>
+           </Button>
+        )}
       </div>
     </header>
   );
