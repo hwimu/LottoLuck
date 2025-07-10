@@ -1,7 +1,8 @@
+
 import { Header } from "@/components/header";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Sparkles, History, Ticket } from "lucide-react";
+import { Sparkles, History, Ticket, MessageSquare } from "lucide-react";
 
 export default function Home() {
   const features = [
@@ -22,6 +23,12 @@ export default function Home() {
         description: "과거에 AI가 추천했던 번호 조합들을 확인해보세요.",
         href: "/history",
         icon: <History className="w-10 h-10 text-primary" />,
+    },
+    {
+      title: "커뮤니티",
+      description: "다른 사용자들과 예측 번호를 공유하고 의견을 나눠보세요.",
+      href: "/community",
+      icon: <MessageSquare className="w-10 h-10 text-primary" />,
     }
   ];
 
@@ -38,7 +45,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {features.map((feature) => (
             <Link href={feature.href} key={feature.title} className="block group">
               <Card className="h-full flex flex-col transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:-translate-y-2 group-hover:border-primary/50">
