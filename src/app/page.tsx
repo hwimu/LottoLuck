@@ -59,8 +59,9 @@ export default function Home() {
       toast({
         title: '로그인 필요',
         description: '로그인 후에 이용해 주세요.',
+        variant: 'destructive',
       });
-      router.push('/login');
+      router.push('/login?reason=unauthenticated');
     }
   };
 
@@ -69,7 +70,7 @@ export default function Home() {
       <div className="space-y-2">
         <h2 className="text-3xl font-bold tracking-tight">안녕하세요!</h2>
         <p className="text-muted-foreground">
-          AI 행운 로또에 오신 것을 환영합니다. 무엇을 도와드릴까요?
+          LottoLuck에 오신 것을 환영합니다. 무엇을 도와드릴까요?
         </p>
       </div>
       

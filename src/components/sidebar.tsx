@@ -34,8 +34,9 @@ export function SidebarMenu() {
       toast({
         title: '로그인 필요',
         description: '로그인 후에 이용해 주세요.',
+        variant: 'destructive',
       });
-      router.push('/login');
+      router.push('/login?reason=unauthenticated');
     }
   };
 
@@ -46,7 +47,7 @@ export function SidebarMenu() {
         <Link href="/" className="flex items-center gap-3">
           <LottoLuckLogo className="h-8 w-8" />
           <h1 className="text-2xl font-black tracking-tighter text-foreground">
-            AI 행운 로또
+            LottoLuck
           </h1>
         </Link>
       </SidebarHeader>

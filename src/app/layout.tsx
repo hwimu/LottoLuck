@@ -5,7 +5,7 @@ import { AuthProvider } from '@/context/auth-context';
 import { AppLayout } from '@/components/app-layout';
 
 export const metadata: Metadata = {
-  title: 'AI 행운 로또',
+  title: 'LottoLuck',
   description: 'AI-powered lottery number recommendations to predict your fortune.',
 };
 
