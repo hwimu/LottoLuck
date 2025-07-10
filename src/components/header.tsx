@@ -1,6 +1,6 @@
 'use client';
 
-import { History, Sparkles, Ticket, LogIn, UserPlus, LogOut } from "lucide-react";
+import { History, Sparkles, Ticket, LogIn, UserPlus, LogOut, User as UserIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { useAuth } from "@/context/auth-context";
@@ -18,9 +18,8 @@ export function Header() {
             </h1>
         </Link>
         <nav className="hidden md:flex items-center gap-2">
-            {loading ? null : user ? (
+            {user && (
               <>
-                <span className="mr-4 text-lg">{user.email}</span>
                 <Button asChild variant="ghost" size="lg" className="hover:bg-primary/80">
                     <Link href="/analysis">
                         <Sparkles className="mr-2 h-5 w-5" />
@@ -39,6 +38,16 @@ export function Header() {
                         나의 행운 기록
                     </Link>
                 </Button>
+              </>
+            )}
+        </nav>
+        <div className="hidden md:flex items-center gap-4">
+            {loading ? null : user ? (
+              <>
+                <div className="flex items-center gap-2">
+                  <UserIcon className="w-6 h-6" />
+                  <span className="text-lg font-medium">{user.email}</span>
+                </div>
                 <Button onClick={logout} variant="outline" size="lg" className="text-foreground hover:bg-primary/80 hover:text-primary-foreground">
                   <LogOut className="mr-2 h-5 w-5" />
                   로그아웃
@@ -60,7 +69,7 @@ export function Header() {
                 </Button>
               </>
             )}
-        </nav>
+        </div>
       </div>
     </header>
   );
