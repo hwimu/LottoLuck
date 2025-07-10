@@ -11,7 +11,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
     --primary: 51 100% 50%; /* #FFD700 */
-    --primary-foreground: 0 0% 3.9%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 0 0% 9%;
     --muted: 0 0% 96.1%;
@@ -46,7 +46,7 @@
     --popover: 240 6% 10%;
     --popover-foreground: 0 0% 98%;
     --primary: 51 100% 50%; /* #FFD700 */
-    --primary-foreground: 0 0% 3.9%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 14.9%;
