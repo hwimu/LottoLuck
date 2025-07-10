@@ -80,7 +80,7 @@ export function Header() {
         href="/"
         className="flex items-center gap-2 text-lg font-semibold md:text-base mr-6"
       >
-        <LottoLuckLogo className="h-10 w-10 text-primary-foreground" />
+        <Ticket className="h-10 w-10 text-primary-foreground" />
         <h1 className="text-3xl font-black tracking-tighter text-primary-foreground">LottoLuck</h1>
       </Link>
       
@@ -105,7 +105,7 @@ export function Header() {
               href="/"
               className="flex items-center gap-2 text-lg font-semibold mb-4"
             >
-              <LottoLuckLogo className="h-6 w-6 text-primary-foreground" />
+              <Ticket className="h-6 w-6 text-primary-foreground" />
                <h1 className="text-xl font-black tracking-tighter text-primary-foreground">LottoLuck</h1>
             </Link>
             {menuItems.map(({ href, label, auth }) => (
