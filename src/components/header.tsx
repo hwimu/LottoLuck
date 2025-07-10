@@ -1,3 +1,4 @@
+
 'use client';
 
 import { LogOut, UserCircle } from "lucide-react";
@@ -21,7 +22,7 @@ export function Header() {
   const userInitial = user?.email.split('@')[0] || "사용자";
 
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-primary px-4 sm:static sm:h-auto sm:border-0 sm:bg-primary sm:px-6">
+    <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-primary px-4 sm:static sm:h-auto sm:border-0 sm:bg-primary sm:px-6">
        <Button
         size="icon"
         variant="outline"
