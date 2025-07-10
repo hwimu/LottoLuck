@@ -2,6 +2,8 @@
 import Link from 'next/link';
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Cpu, History, Ticket, Users, ArrowRight } from "lucide-react";
+import { Separator } from '@/components/ui/separator';
+import { CommunityFeed } from '@/components/community-feed';
 
 const features = [
   {
@@ -71,6 +73,16 @@ export default function Home() {
           </Card>
         ))}
       </div>
+
+      <Separator className="my-12" />
+
+      <div className="space-y-4">
+        <h2 className="text-2xl font-bold tracking-tight">커뮤니티 소식</h2>
+        <p className="text-muted-foreground">
+          다른 사용자들의 행운과 예측을 확인해보세요.
+        </p>
+      </div>
+      <CommunityFeed />
     </div>
   );
 }
