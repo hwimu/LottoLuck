@@ -35,7 +35,7 @@ export function Header() {
       <div className="flex items-center gap-2 ml-auto">
         {loading ? null : user ? (
           <>
-            <span className="text-primary-foreground font-semibold">안녕하세요, {userInitial}님!</span>
+            <span className="text-primary-foreground font-bold">안녕하세요, {userInitial}님!</span>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="overflow-hidden rounded-full">
