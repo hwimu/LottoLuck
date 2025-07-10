@@ -41,12 +41,12 @@ export function Header() {
               </>
             )}
         </nav>
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-4 ml-auto">
             {loading ? null : user ? (
               <>
                 <div className="flex items-center gap-2">
                   <UserIcon className="w-6 h-6" />
-                  <span className="text-lg font-medium">{user.email}</span>
+                  <span className="text-lg font-medium">{user.email.split('@')[0]}</span>
                 </div>
                 <Button onClick={logout} variant="outline" size="lg" className="text-foreground hover:bg-primary/80 hover:text-primary-foreground">
                   <LogOut className="mr-2 h-5 w-5" />
