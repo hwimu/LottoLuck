@@ -15,7 +15,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       <SidebarInset>
         <div className="flex flex-col">
           <Header />
-          <main className="flex flex-1 flex-col gap-4 bg-muted/40 p-4 sm:px-6 sm:py-0 md:gap-8">
+          <main className="flex flex-1 flex-col gap-4 bg-background p-4 sm:px-6 sm:py-0 md:gap-8">
             {children}
           </main>
         </div>
