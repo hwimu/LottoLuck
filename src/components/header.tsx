@@ -47,8 +47,12 @@ export function Header() {
   };
 
   const NavLinks = ({ isMobile = false }: { isMobile?: boolean }) => {
-    const navClass = isMobile ? "grid gap-6 text-lg font-medium" : "hidden md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6";
-    const linkClass = isMobile ? "text-primary-foreground/80 hover:text-white" : "transition-colors hover:text-white";
+    const navClass = isMobile 
+      ? "grid gap-6 text-lg font-medium" 
+      : "hidden md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6";
+    const linkClass = isMobile 
+      ? "text-primary-foreground/80 hover:text-white" 
+      : "transition-colors hover:text-white whitespace-nowrap";
 
     return (
       <nav className={navClass}>
@@ -80,7 +84,7 @@ export function Header() {
         <h1 className="text-2xl font-black tracking-tighter text-white">LottoLuck</h1>
       </Link>
       
-      <div className="hidden md:flex flex-1 items-center gap-5">
+      <div className="flex-1 items-center gap-5">
          <NavLinks />
       </div>
 
@@ -110,7 +114,7 @@ export function Header() {
               href={href}
               onClick={(e) => handleLinkClick(e, href, auth)}
               className={cn(
-                "transition-colors hover:text-white",
+                "transition-colors hover:text-white whitespace-nowrap",
                 pathname === href ? "text-white font-semibold" : "text-primary-foreground/80"
               )}
             >
