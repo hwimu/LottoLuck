@@ -80,8 +80,8 @@ export function Header() {
         href="/"
         className="flex items-center gap-2 text-lg font-semibold md:text-base mr-6"
       >
-        <Ticket className="h-10 w-10 text-primary-foreground" />
-        <h1 className="text-3xl font-black tracking-tighter text-primary-foreground">LottoLuck</h1>
+        <Ticket className="h-10 w-10 text-white" />
+        <h1 className="text-3xl font-black tracking-tighter text-white">LottoLuck</h1>
       </Link>
       
       <div className="flex flex-1 items-center gap-5">
@@ -105,8 +105,8 @@ export function Header() {
               href="/"
               className="flex items-center gap-2 text-lg font-semibold mb-4"
             >
-              <Ticket className="h-6 w-6 text-primary-foreground" />
-               <h1 className="text-xl font-black tracking-tighter text-primary-foreground">LottoLuck</h1>
+              <Ticket className="h-6 w-6 text-white" />
+               <h1 className="text-xl font-black tracking-tighter text-white">LottoLuck</h1>
             </Link>
             {menuItems.map(({ href, label, auth }) => (
             <Link
