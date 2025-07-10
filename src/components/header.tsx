@@ -46,39 +46,44 @@ export function Header() {
     }
   };
 
-  const NavLinks = ({ className }: { className?: string }) => (
-    <>
-      {menuItems.map(({ href, label, auth }) => (
-        <Link
-          key={href}
-          href={href}
-          onClick={(e) => handleLinkClick(e, href, auth)}
-          className={cn(
-            "transition-colors hover:text-white",
-            pathname === href ? "text-white font-semibold" : "text-primary-foreground/80",
-            className
-          )}
-        >
-          {label}
-        </Link>
-      ))}
-    </>
-  );
+  const NavLinks = ({ isMobile = false }: { isMobile?: boolean }) => {
+    const navClass = isMobile ? "grid gap-6 text-lg font-medium" : "hidden md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6";
+    const linkClass = isMobile ? "text-primary-foreground/80 hover:text-white" : "transition-colors hover:text-white";
+
+    return (
+      <nav className={navClass}>
+        {menuItems.map(({ href, label, auth }) => (
+          <Link
+            key={href}
+            href={href}
+            onClick={(e) => handleLinkClick(e, href, auth)}
+            className={cn(
+              linkClass,
+              pathname === href ? "text-white font-semibold" : "text-primary-foreground/80",
+            )}
+          >
+            {label}
+          </Link>
+        ))}
+      </nav>
+    );
+  };
+
 
   return (
     <header className="sticky top-0 flex h-20 items-center gap-4 border-b bg-primary px-4 md:px-6 z-40">
-       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-lg font-semibold md:text-base"
-        >
-          <LottoLuckLogo className="h-8 w-8 text-white" />
-          <h1 className="text-2xl font-black tracking-tighter text-white">LottoLuck</h1>
-        </Link>
-        <div className="flex items-center gap-5 pl-6">
-           <NavLinks />
-        </div>
-      </nav>
+      <Link
+        href="/"
+        className="flex items-center gap-2 text-lg font-semibold md:text-base mr-6"
+      >
+        <LottoLuckLogo className="h-8 w-8 text-white" />
+        <h1 className="text-2xl font-black tracking-tighter text-white">LottoLuck</h1>
+      </Link>
+      
+      <div className="hidden md:flex flex-1 items-center gap-5">
+         <NavLinks />
+      </div>
+
       <Sheet>
         <SheetTrigger asChild>
           <Button
@@ -91,16 +96,28 @@ export function Header() {
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="bg-primary text-primary-foreground">
-          <nav className="grid gap-6 text-lg font-medium">
-            <Link
+          <div className="grid gap-6 text-lg font-medium">
+             <Link
               href="/"
-              className="flex items-center gap-2 text-lg font-semibold"
+              className="flex items-center gap-2 text-lg font-semibold mb-4"
             >
               <LottoLuckLogo className="h-6 w-6 text-white" />
                <h1 className="text-xl font-black tracking-tighter text-white">LottoLuck</h1>
             </Link>
-            <NavLinks className="text-primary-foreground/80 hover:text-white"/>
-          </nav>
+            {menuItems.map(({ href, label, auth }) => (
+            <Link
+              key={href}
+              href={href}
+              onClick={(e) => handleLinkClick(e, href, auth)}
+              className={cn(
+                "transition-colors hover:text-white",
+                pathname === href ? "text-white font-semibold" : "text-primary-foreground/80"
+              )}
+            >
+              {label}
+            </Link>
+          ))}
+          </div>
         </SheetContent>
       </Sheet>
       <div className="flex w-full items-center justify-end gap-4 md:ml-auto md:gap-2 lg:gap-4">
