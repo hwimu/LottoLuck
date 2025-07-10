@@ -97,7 +97,7 @@ export function CommunityFeed() {
     }
   }, []);
 
-  const popularPosts = [...posts].sort((a, b) => b.votes - a.votes).slice(0, 4);
+  const popularPosts = [...posts].sort((a, b) => b.votes - a.votes).slice(0, 3);
   const recentPosts = [...posts].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).slice(0, 4);
 
   return (
@@ -109,9 +109,9 @@ export function CommunityFeed() {
              <Link href="/community">더보기</Link>
           </Button>
         </CardHeader>
-        <CardContent className="grid gap-4 md:grid-cols-2">
+        <CardContent className="grid gap-4 md:grid-cols-1 lg:grid-cols-3">
           {isLoading ? (
-            Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="h-28 w-full" />)
+            Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-28 w-full" />)
           ) : (
             popularPosts.map(post => <PostCard key={post.id} post={post} />)
           )}
